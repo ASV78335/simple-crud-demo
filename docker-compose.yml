@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+###> doctrine/doctrine-bundle ###
+  db:
+    container_name: postgres-demo
+    image: postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-app}
+      POSTGRES_USER: ${POSTGRES_USER:-app}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
+    ports:
+      - "5432:5432"
+    volumes:
+      - database_data:/var/lib/postgresql/data:rw
+
+  adminer:
+    image: adminer
+    ports:
+      - "8080:8080"
+###< doctrine/doctrine-bundle ###
+
+volumes:
+###> doctrine/doctrine-bundle ###
+  database_data:
+###< doctrine/doctrine-bundle ###
